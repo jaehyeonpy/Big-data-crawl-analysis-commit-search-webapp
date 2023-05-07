@@ -1,0 +1,95 @@
+{% extends 'layout.html' %} 
+
+{% block head %}
+{% endblock %} 
+
+{% block content %}
+  <br>
+  <br>
+  <br>
+
+  {% if not crawled_tweet_positive and not crawled_tweet_negative %}
+    <form method="POST" action="{% url 'crawled_view:crawl' %}">
+      {% csrf_token %}
+
+      <label for="keyword" class="form-label">Keyword</label>
+      <input type="text" id="keyword" name="keyword" class="form-control">
+      <br>
+
+      <label for="tweet-count" class="form-label">Tweet count</label>
+      <input type="text" id="tweet-count" name="tweet-count" class="form-control">
+      <br>
+
+      <button type="submit" class="btn btn-primary container-fluid mt-1">Crawl</button>
+      <br>
+    </form>
+  {% endif %}
+
+  {% if crawled_tweet_positive or crawled_tweet_negative %}
+    <form method="POST" action="{% url 'crawled_view:commit' %}">
+      {% csrf_token %}
+
+      <button type="submit" class="btn btn-primary container-fluid mt-1">Commit</button>
+
+      <br>
+    </form>
+  {% endif %}
+
+  <br>
+  <br>
+
+  {% if crawled_tweet_positive or crawled_tweet_negative %}
+    <b>Total:</b> {{ crawled_tweet_positive_count }}
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Contents</th>
+
+          <th scope="col">Sentiment category</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for e in crawled_tweet_positive.values %}
+          <tr>          
+            <td>{{ e.0 }}</td>
+
+            <td>{{ e.1 }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <br>
+    <br>
+
+    <b>Total:</b> {{ crawled_tweet_negative_count }}
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Contents</th>
+
+          <th scope="col">Sentiment category</th>
+        </tr>
+      </thead>
+
+      <tbody>
+          {% for e in crawled_tweet_negative.values %}
+            <tr>
+              <td>{{ e.0 }}</td>
+
+              <td>{{ e.1 }}</td>
+            </tr>
+          {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+{% endblock %} 
+
+{% block js %} 
+  {% if is_commited %}
+    <script>alert('commit complete!');</script>
+  {% endif %}
+{% endblock %}

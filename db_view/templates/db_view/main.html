@@ -1,0 +1,78 @@
+{% extends 'layout.html' %} 
+
+{% block head %}
+{% endblock %} 
+
+{% block content %}
+  <br>
+  <br>
+  <br>
+
+  {% if not searched_table and not searched_tweet %}
+    <form method="POST" action="{% url 'db_view:search' %}">
+      {% csrf_token %}
+
+      <label for="keyword" class="form-label">Keyword</label>
+      <input type="text" id="keyword" name="keyword" class="form-control">
+      <br>
+
+      <button type="submit" class="btn btn-primary container-fluid mt-1">Search</button>
+      <br>
+    </form>
+  {% endif %}
+
+  {% if searched_table %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Table name</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for e in searched_table %}
+          <tr>          
+            <td>{{ e }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+
+  {% if searched_tweet %}
+    <b>Tweet count:</b> {{ searched_tweet_count }} <br>
+    <b>Search time:</b> {{ search_time }}
+
+    <br>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Content</th>
+
+          <th scope="col">Sentiment category</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for e in searched_tweet %}
+          <tr>          
+            <td>{{ e.0 }}</td>
+
+            <td>{{ e.1 }}</td>          
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+{% endblock %} 
+
+{% block js %}
+  {% if is_notable %}
+    <script>alert('no table in the database.');</script>
+  {% endif %}
+
+  {% if is_notweet %}
+    <script>alert('no tweet in the table.');</script>
+  {% endif %}
+{% endblock %}

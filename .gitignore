@@ -1,0 +1,8 @@
+build/
+*/__pycache__
+dist/
+default/
+out.egg-info/
+venv/
+config.log
+file.log
