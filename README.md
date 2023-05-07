@@ -112,7 +112,8 @@ while len(self.posts_data) < self.tweets_count:
 ~~~
 
 - 위 library는 browser automation 이용해 트위터 게시물 crawl 하는데, 트위터 문제로 트윗이 브라우저에 나타나지 않는 문제 있었습니다. library code reading 하여, library code 문제 아닌 트위터 고유의 문제임을 확인했습니다.
-  - code reading 하다 보면 마지막에 urlib3 이용해 http request 수행합니다. 그 이전에 문제가 될만한 소지의 code 보이지 않고, urlib3 이후는 널리 사용되는 code로 문제가 일어날 소지 적습니다. 따라서, 본 webapp 잘못 없음이라 판단을 내렸습니다.
+  - 트윗 브라우저 나타나지 않는 문제 대해 code reading 하다 보면 마지막에 urlib3 이용해 http request 수행합니다. 그 이전에 문제가 될만한 소지의 code 보이지 않고, urlib3 이후는 널리 사용되는 code로 문제가 일어날 소지 적습니다. 따라서, 본 webapp 잘못 없음이라 판단을 내렸습니다.
+  - 스크롤 문제에 대해서 code reading 하여도 본 문제와 접점이 없었습니다.
 
 - 대용량 데이터 다룰 시 disk io 줄이는 것이 중요한 것임을 알고, disk io 줄이기 위해 in-memory 상에 필요한 데이터를 적재 시키고자 하였습니다.
   - mysql query cache 기능 사용하고, table partitioning 하였습니다만, django application server 상에서 쿼리 실행 시 기대만큼 성능 상 이득을 보지 못하였습니다.(10초) 하지만, mysql built-in client 상에서 쿼리 실행 시 상당한 성능 이득을 보았기에(query cache 적용 전 2초, 적용 후 1초), 데이터가 query cache에서 django server 이동 중 overhead 일어나고 있다 판단 하였습니다. 따라서, django  database connector 교체했습니다.(4초)
