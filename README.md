@@ -3,7 +3,7 @@
 
 ## Note
 
-[이력서](https://fuchsia-maxilla-85f.notion.site/learning-curve-troubleshooting-fa1c8adb14a846c0be3051397b9d9807)와 함께 읽을 것을 추천 드립니다.
+- [이력서](https://fuchsia-maxilla-85f.notion.site/learning-curve-troubleshooting-fa1c8adb14a846c0be3051397b9d9807)와 함께 읽을 것을 추천 드립니다.
 
 
 ## Description
