@@ -8,14 +8,13 @@ from common import detect_invalid_sql_db
 
 
 def main(request):
-    return render(
-        request,
-        'db_view/main.html'
-        )
+    if request.method == 'GET':
+        return render(
+            request,
+            'searcher/main.html'
+            )
 
-
-def search(request):
-    if request.method == 'POST':
+    elif request.method == 'POST':
         keyword = request.POST['keyword'].lower()
         searched_table = ()
         searched_tweet = ()
@@ -34,7 +33,7 @@ def search(request):
             if searched_table == ():
                 return render(
                     request,
-                    'db_view/main.html', 
+                    'searcher/main.html', 
                     {'is_notable': 'true'}
                     )
             else:
@@ -42,7 +41,7 @@ def search(request):
                 
                 return render( 
                     request,
-                    'db_view/main.html', {
+                    'searcher/main.html', {
                         'searched_table': searched_table,
                         'searched_table_count': len(searched_table),
                     }) 
@@ -64,13 +63,13 @@ def search(request):
             if searched_tweet == ():
                 return render(
                     request,
-                    'db_view/main.html', 
+                    'searcher/main.html', 
                     {'is_notweet': 'true'}
                     )            
             else:
                 return render( 
                     request,
-                    'db_view/main.html', {
+                    'searcher/main.html', {
                         'searched_tweet': searched_tweet[:100],
                         'searched_tweet_count': len(searched_tweet),
                         'search_time': round(end-start, 3),

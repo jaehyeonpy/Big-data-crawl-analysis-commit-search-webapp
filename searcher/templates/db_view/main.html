@@ -9,7 +9,7 @@
   <br>
 
   {% if not searched_table and not searched_tweet %}
-    <form method="POST" action="{% url 'db_view:search' %}">
+    <form method="POST" action="{% url 'searcher:main' %}">
       {% csrf_token %}
 
       <label for="keyword" class="form-label">Keyword</label>

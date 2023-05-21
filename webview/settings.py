@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'crawled_view',
-    'db_view',
+    'crawl-analysis-commit-er',
+    'searcher',
 ]
 
 MIDDLEWARE = [

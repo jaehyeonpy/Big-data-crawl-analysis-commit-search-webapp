@@ -11,12 +11,13 @@ global_keyword = None
 
 
 def main(request):
-    return render(
-        request,
-        'crawled_view/main.html'
-        )
-
-def crawl(request):
+    if request.method == 'GET':
+        return render(
+            request,
+            'crawl-analysis-commit-er/main.html'
+            )
+    
+def crawler_analyzer(request):  
     if request.method == 'POST':
         # if invalid, raise an exception in the function.
         detect_invalid_sql_crawl(request.POST['keyword'])
@@ -52,7 +53,7 @@ def crawl(request):
 
         return render(
             request,
-            'crawled_view/main.html', {
+            'crawl-analysis-commit-er/main.html', {
                 'crawled_tweet_positive': tweet_positive,
                 'crawled_tweet_negative': tweet_negative,
                 'crawled_tweet_positive_count': len(tweet_positive),
@@ -118,7 +119,7 @@ def commit_to_db_buffer_size(db_buffer_size):
             return
                     
             
-def commit(request): 
+def committer(request): 
     if request.method == 'POST':
         try: 
             cc = connection.cursor()
@@ -140,6 +141,6 @@ def commit(request):
 
         return render(
             request,
-            'crawled_view/main.html',
+            'crawl-analysis-commit-er/main.html',
             {'is_commited': 'true'} 
             ) 

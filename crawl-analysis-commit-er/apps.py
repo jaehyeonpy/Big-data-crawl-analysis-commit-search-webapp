@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class DbViewConfig(AppConfig):
+class CrawledViewConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'db_view'
+    name = 'crawl-analysis-commit-er'

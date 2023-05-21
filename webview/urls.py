@@ -3,9 +3,11 @@ from django.urls import include, path
 
 urlpatterns = [
     path(
-        'crawled_view/', 
-        include('crawled_view.urls')),
+        'crawl-analysis-commit-er/', 
+        include('crawl-analysis-commit-er.urls')
+        ),
     path(
-        'db_view/', 
-        include('db_view.urls')),
+        'searcher/', 
+        include('searcher.urls')
+        ),
 ]
