@@ -27,7 +27,7 @@
    <td>/crawl-analysis-commit-er/crawler-analyzer</td>
    <td>POST</td>
    <td>
-    <li>화면 상 crawl 버튼 누르면, 트위터에서 crawl하고, 그 결과를 sentiment analysis 하기 위한 정보를 서버에 전달합니다.</li>
+    <li>위 화면 상 crawl 버튼 누르면, 트위터에서 crawl하고, 그 결과를 sentiment analysis 하기 위한 정보를 서버에 전달합니다.</li>
     <li>GET /crawl-analysis-commit-er 하여 그 결과 화면을 클라이언트에 리턴하는 내용도 포함되어 있습니다. Restful API 원칙 어긋나겠지만, 포트폴리오 같이 규모 작은 프로젝트에는 무방하리라 생각했습니다.</li> 
     <li>POST 시 '키워드1'로 포함해 전달했다면, '키워드1'이 모든 트윗에 포함되어 있어야 합니다. 마찬가지로, POST 시 '키워드1 키워드2'로 포함해 전달했다면, '키워드1', '키워드2'가 모든 트윗에 포함되어 있어야 합니다.</li>
     <li>sentiment는 positive, negative 분류하여 표시합니다.</li> 
@@ -41,7 +41,7 @@
    <td>/crawl-analysis-commit-er/committer</td>
    <td>POST</td>
    <td>
-    <li>화면 상 commit 버튼 눌렀을 때, 이전에 POST /crawl-analysis-commit-er/crawler-analyzer 시 '키워드1' 포함해 전달했었다면, positive 분류된 트윗을 데이터베이스 내 '키워드1_positive' 테이블, negative 분류된 트윗을 데이터베이스 내 '키워드1_negative' 테이블에 적재합니다.</li> 
+    <li>위 화면 상 commit 버튼 눌렀을 때, 이전에 POST /crawl-analysis-commit-er/crawler-analyzer 시 '키워드1' 포함해 전달했었다면, positive 분류된 트윗을 데이터베이스 내 '키워드1_positive' 테이블, negative 분류된 트윗을 데이터베이스 내 '키워드1_negative' 테이블에 적재합니다.</li> 
     <li>이전에 POST /crawl-analysis-commit-er/crawler-analyzer 시 '키워드1 키워드2' 포함헤 전달했었다면, 데이터베이스 내 '키워드1_키워드2_positive', '키워드1_키워드2_negative' 테이블에 적재합니다.</li> 
     <li>관련 요구사항, 테스트 사항 https://github.com/jaehyeonpy/Big-data-crawl-analysis-commit-search-webapp/issues/7 참고하시길 바랍니다.</li>
    </td>
@@ -63,7 +63,7 @@
    <td>/searcher</td>
    <td>POST</td>
    <td>
-    <li>화면 상 search 버튼 눌러서, 데이터베이스에 있는 테이블 리스트 출력 명령 서버에 전달하거나, 데이터베이스 저장된 특정 테이블 내용 출력하도록 테이블 이름 서버에 전달합니다.</li>
+    <li>위 화면 상 search 버튼 눌러서, 데이터베이스에 있는 테이블 리스트 출력 명령 서버에 전달하거나, 데이터베이스 저장된 특정 테이블 내용 출력하도록 테이블 이름 서버에 전달합니다.</li>
     <li>GET /searcher 하여 그 결과 화면을 클라이언트에 리턴하는 내용도 포함되어 있습니다. Restful API 원칙 어긋나겠지만, 포트폴리오 같이 규모 작은 프로젝트에는 무방하리라 생각했습니다.</li> 
     <li>관련 요구사항, 테스트 사항은 https://github.com/jaehyeonpy/Big-data-crawl-analysis-commit-search-webapp/issues/10 참고하시길 바랍니다.</li>
     <li><img width="1440" alt="ds" src="https://user-images.githubusercontent.com/123809332/236432723-0a2f2642-a8f5-40df-af26-729eda286cef.png"></li>
