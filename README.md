@@ -77,7 +77,6 @@
 
 - 대용량 데이터 다룰 시 disk IO 줄이는 것이 중요한 것임을 알고, in-memory 상에 필요한 데이터를 적재 시키고자 하였습니다.
   - mysql query cache 기능 사용하고, 테이블 파티셔닝 하였습니다만, django 서버 상에서 쿼리 실행 시 기대만큼 성능 상 이득을 보지 못하였습니다.(10초) 하지만, mysql built-in client 상에서 쿼리 실행 시 상당한 성능 이득을 보았기에(query cache 적용 전 2초, 적용 후 1초), 데이터가 query cache에서 django 서버 이동 중 overhead 일어나고 있다 판단 하였습니다. 따라서, mysql database connector 교체했습니다.(4초)
-  - 10초의 성능을 보인 connector는 pymysql, 4초의 성능을 보인 것은 mysql-connector-python 입니다. code reading 하여 보니, 두 connector 간 logic 상 별 차이는 없었습니다. 다만, pymysql은 python만으로 작성되었고, mysql-connector-python는 c언어로도 작성된 부분 있습니다. python은 동적 타이핑에 의한 overhead 크므로, 이러한 이유에서 performance 차이 난다고 결론을 내렸습니다.
 
 - [twitter crawling library](https://github.com/shaikhsajid1111/twitter-scraper-selenium) 사용해 browser automation 통해 트위터 게시물 crawl 하는데, 트위터 문제로 트윗이 브라우저에 나타나지 않는 문제 있었습니다. 코드 복잡도 있는 라이브러리 code reading 하여, 본 webapp 문제 아닌 트위터 고유의 문제임을 확인했습니다.
   - 트윗 브라우저 나타나지 않는 문제 대해 code reading 하다 보면 위 라이브러리 거쳐 selenium 코드로 넘어가게 되는데, 마지막에 urlib3 이용해 http request 수행합니다. 그 이전에 문제가 될만한 소지의 코드 보이지 않고, urlib3 이후는 널리 사용되는 코드로 문제가 일어날 소지 적습니다. 따라서, 본 webapp 잘못 없음이라 판단을 내렸습니다.
